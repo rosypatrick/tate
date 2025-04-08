@@ -1,0 +1,219 @@
+<!-- Newsletter Component - Ready for Implementation -->
+<section class="newsletter-component">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <h3>Stay Updated with Industry Insights</h3>
+      <p>Subscribe to receive the latest news, product updates, and expert advice on raised access flooring solutions.</p>
+    </div>
+    <form class="newsletter-form" id="footer-newsletter">
+      <div class="newsletter-form-group">
+        <input type="email" placeholder="Your email address" required aria-label="Email Address">
+        <button type="submit" class="newsletter-submit">Subscribe</button>
+      </div>
+      <div class="newsletter-consent">
+        <input type="checkbox" id="newsletter-consent-checkbox" required>
+        <label for="newsletter-consent-checkbox">I agree to receive marketing communications from Tate Global and confirm that I have read the <a href="/privacy-policy">Privacy Policy</a>.</label>
+      </div>
+    </form>
+    <div class="newsletter-benefits">
+      <div class="benefit-item">
+        <i class="fas fa-envelope"></i>
+        <span>Monthly Newsletter</span>
+      </div>
+      <div class="benefit-item">
+        <i class="fas fa-unlock"></i>
+        <span>Exclusive Content</span>
+      </div>
+      <div class="benefit-item">
+        <i class="fas fa-bell"></i>
+        <span>Product Updates</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Newsletter Component Styles */
+.newsletter-component {
+  background-color: #f8fafc;
+  padding: 3rem 1.5rem;
+  border-radius: 8px;
+  margin: 2rem 0;
+}
+
+.newsletter-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.newsletter-content {
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-content h3 {
+  color: #003082;
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.newsletter-content p {
+  color: #64748b;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.newsletter-form {
+  margin-bottom: 1.5rem;
+}
+
+.newsletter-form-group {
+  display: flex;
+  max-width: 450px;
+  margin: 0 auto 1rem;
+}
+
+.newsletter-form-group input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px 0 0 4px;
+  font-size: 0.9375rem;
+}
+
+.newsletter-submit {
+  background-color: #003082;
+  color: white;
+  border: none;
+  padding: 0 1.5rem;
+  border-radius: 0 4px 4px 0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.newsletter-submit:hover {
+  background-color: #1a4795;
+}
+
+.newsletter-consent {
+  display: flex;
+  align-items: flex-start;
+  max-width: 450px;
+  margin: 0 auto;
+  text-align: left;
+  font-size: 0.75rem;
+}
+
+.newsletter-consent input {
+  margin-top: 0.25rem;
+  margin-right: 0.5rem;
+}
+
+.newsletter-consent label {
+  color: #64748b;
+  line-height: 1.4;
+}
+
+.newsletter-benefits {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.benefit-item {
+  display: flex;
+  align-items: center;
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.benefit-item i {
+  color: #009fe3;
+  margin-right: 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .newsletter-form-group {
+    flex-direction: column;
+  }
+  
+  .newsletter-form-group input {
+    border-radius: 4px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .newsletter-submit {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+  }
+  
+  .newsletter-benefits {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+  }
+}
+</style>
+
+<script>
+// Newsletter Form Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const newsletterForm = document.getElementById('footer-newsletter');
+  if (!newsletterForm) return;
+  
+  newsletterForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    // Get form data
+    const email = this.querySelector('input[type="email"]').value;
+    const consent = this.querySelector('#newsletter-consent-checkbox').checked;
+    
+    // Validate
+    if (!email || !consent) {
+      alert('Please fill in all required fields');
+      return;
+    }
+    
+    // Format the data for submission
+    const formData = {
+      email: email,
+      consent: consent,
+      source: 'website_footer',
+      timestamp: new Date().toISOString()
+    };
+    
+    // In a real implementation, send this data to your API
+    console.log('Newsletter signup:', formData);
+    
+    // Show success message
+    const originalContent = this.innerHTML;
+    this.innerHTML = `
+      <div class="newsletter-success">
+        <i class="fas fa-check-circle" style="font-size: 2rem; color: #10b981; margin-bottom: 1rem;"></i>
+        <h4>Thank You for Subscribing!</h4>
+        <p>You'll receive our next newsletter soon. Please check your inbox to confirm your subscription.</p>
+      </div>
+    `;
+    
+    // For demo purposes, reset after delay
+    setTimeout(() => {
+      this.innerHTML = originalContent;
+      this.reset();
+      attachEventListeners(); // Re-attach event listeners
+    }, 5000);
+  });
+  
+  function attachEventListeners() {
+    const newsletterForm = document.getElementById('footer-newsletter');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function(e) {
+        // Same function as above
+      });
+    }
+  }
+});
+</script>

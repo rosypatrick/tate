@@ -1,0 +1,371 @@
+<!-- Live Chat Component - Ready for Implementation -->
+<div class="tate-chat-widget" id="tate-chat-widget">
+  <!-- Chat Toggle Button -->
+  <button class="tate-chat-toggle" id="tate-chat-toggle" aria-label="Open chat">
+    <i class="tate-chat-icon-closed">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+      </svg>
+    </i>
+    <span class="tate-chat-label">Chat with an expert</span>
+  </button>
+  
+  <!-- Chat Window -->
+  <div class="tate-chat-container" id="tate-chat-container">
+    <!-- Chat Header -->
+    <div class="tate-chat-header">
+      <div class="tate-chat-header-info">
+        <div class="tate-chat-title">Tate Support</div>
+        <div class="tate-chat-status">
+          <span class="tate-status-indicator"></span>
+          <span class="tate-status-text">Online</span>
+        </div>
+      </div>
+      <button class="tate-chat-close" id="tate-chat-close" aria-label="Close chat">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Chat Messages -->
+    <div class="tate-chat-messages" id="tate-chat-messages">
+      <div class="tate-message tate-message-system">
+        <div class="tate-message-content">
+          <p>👋 Welcome to Tate Global! How can we help with your raised access flooring needs today?</p>
+        </div>
+        <div class="tate-message-time">Just now</div>
+      </div>
+    </div>
+    
+    <!-- Chat Input -->
+    <div class="tate-chat-input-container">
+      <textarea id="tate-chat-input" class="tate-chat-input" placeholder="Type your message here..." rows="1"></textarea>
+      <button id="tate-chat-send" class="tate-chat-send" aria-label="Send message">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="22" y1="2" x2="11" y2="13"></line>
+          <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* Live Chat Component Styles */
+.tate-chat-widget {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #0f172a;
+}
+
+.tate-chat-toggle {
+  display: flex;
+  align-items: center;
+  background-color: #009fe3;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 159, 227, 0.25);
+  transition: all 0.2s ease;
+}
+
+.tate-chat-toggle:hover {
+  background-color: #003082;
+  transform: translateY(-2px);
+}
+
+.tate-chat-icon-closed {
+  margin-right: 8px;
+  display: flex;
+}
+
+.tate-chat-container {
+  position: absolute;
+  bottom: 60px;
+  right: 0;
+  width: 320px;
+  height: 400px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  display: none;
+}
+
+.tate-chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #003082;
+  color: white;
+}
+
+.tate-chat-title {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.tate-chat-status {
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.tate-status-indicator {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.tate-chat-close {
+  background: transparent;
+  color: white;
+  border: none;
+  cursor: pointer;
+  display: flex;
+}
+
+.tate-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px;
+  background-color: #f8fafc;
+}
+
+.tate-message {
+  margin-bottom: 15px;
+}
+
+.tate-message-system .tate-message-content {
+  background-color: #003082;
+  color: white;
+  border-radius: 12px 12px 12px 0;
+}
+
+.tate-message-user .tate-message-content {
+  background-color: #e2e8f0;
+  color: #0f172a;
+  border-radius: 12px 12px 0 12px;
+  margin-left: auto;
+}
+
+.tate-message-content {
+  padding: 10px 15px;
+  max-width: 80%;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.tate-message-time {
+  font-size: 11px;
+  color: #94a3b8;
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.tate-message-user .tate-message-time {
+  text-align: right;
+  margin-right: 5px;
+}
+
+.tate-chat-input-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-top: 1px solid #e2e8f0;
+  background-color: white;
+}
+
+.tate-chat-input {
+  flex: 1;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 14px;
+  resize: none;
+  font-family: inherit;
+  outline: none;
+}
+
+.tate-chat-input:focus {
+  border-color: #94a3b8;
+}
+
+.tate-chat-send {
+  background-color: #009fe3;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.tate-chat-send:hover {
+  background-color: #003082;
+}
+
+/* Mobile Responsive Styling */
+@media screen and (max-width: 480px) {
+  .tate-chat-label {
+    display: none;
+  }
+  
+  .tate-chat-toggle {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    padding: 0;
+    justify-content: center;
+  }
+  
+  .tate-chat-icon-closed {
+    margin-right: 0;
+  }
+  
+  .tate-chat-container {
+    width: 100%;
+    max-width: calc(100vw - 40px);
+    height: 400px;
+    bottom: 60px;
+    right: 0;
+  }
+}
+</style>
+
+<script>
+// Live Chat Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  // Elements
+  const chatWidget = document.getElementById('tate-chat-widget');
+  const chatToggle = document.getElementById('tate-chat-toggle');
+  const chatContainer = document.getElementById('tate-chat-container');
+  const chatClose = document.getElementById('tate-chat-close');
+  const chatMessages = document.getElementById('tate-chat-messages');
+  const chatInput = document.getElementById('tate-chat-input');
+  const chatSend = document.getElementById('tate-chat-send');
+  
+  if (!chatWidget) return;
+  
+  // Toggle chat
+  chatToggle.addEventListener('click', function() {
+    chatContainer.style.display = chatContainer.style.display === 'flex' ? 'none' : 'flex';
+    if (chatContainer.style.display === 'flex') {
+      chatInput.focus();
+      
+      // Log analytics event - chat opened
+      logChatEvent('chat_opened');
+    }
+  });
+  
+  // Close chat
+  chatClose.addEventListener('click', function() {
+    chatContainer.style.display = 'none';
+    
+    // Log analytics event - chat closed
+    logChatEvent('chat_closed');
+  });
+  
+  // Send message on button click
+  chatSend.addEventListener('click', sendMessage);
+  
+  // Send message on Enter key
+  chatInput.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+  
+  // Auto resize textarea
+  chatInput.addEventListener('input', function() {
+    this.style.height = 'auto';
+    this.style.height = (this.scrollHeight) + 'px';
+  });
+  
+  // Function to send message
+  function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+    
+    // Add user message to chat
+    appendMessage(message, 'user');
+    
+    // Clear input
+    chatInput.value = '';
+    chatInput.style.height = 'auto';
+    
+    // Log analytics event - message sent
+    logChatEvent('message_sent', { length: message.length });
+    
+    // Simulate agent response after delay
+    setTimeout(() => {
+      const responses = [
+        "Thanks for your message. Our team will be with you shortly.",
+        "I'll connect you with a flooring specialist who can help with your query.",
+        "Thanks for reaching out. Could you provide some details about your project so we can better assist you?",
+        "Our typical response time is under 2 minutes during business hours. A specialist will be with you soon."
+      ];
+      
+      const randomResponse = responses[Math.floor(Math.random() * responses.length)];
+      appendMessage(randomResponse, 'system');
+      
+      // Scroll to bottom
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }, 1000);
+  }
+  
+  // Function to append message to chat
+  function appendMessage(text, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.classList.add('tate-message');
+    messageDiv.classList.add(`tate-message-${type}`);
+    
+    const now = new Date();
+    const timeString = `${now.getHours()}:${now.getMinutes().toString().padStart(2, '0')}`;
+    
+    messageDiv.innerHTML = `
+      <div class="tate-message-content">
+        <p>${text}</p>
+      </div>
+      <div class="tate-message-time">${timeString}</div>
+    `;
+    
+    chatMessages.appendChild(messageDiv);
+    
+    // Scroll to bottom
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+  
+  // Analytics logging function
+  function logChatEvent(eventName, params = {}) {
+    // This would be replaced with your actual analytics implementation
+    console.log(`Chat event: ${eventName}`, params);
+    
+    // Example for Google Analytics 4
+    // if (typeof gtag === 'function') {
+    //   gtag('event', eventName, params);
+    // }
+  }
+});
+</script>

@@ -1,0 +1,84 @@
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="logo" style="margin-bottom: 1rem;">
+                        <span style="color: white; font-size: 2rem;">Tate.</span>
+                    </div>
+                    <p>Tate Global has been a leader in raised access flooring solutions for over 120 years, providing innovative and sustainable solutions for modern building environments worldwide.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#">ConCore® Access Floor</a></li>
+                        <li><a href="#">PosiLock® Understructure</a></li>
+                        <li><a href="#">EcoCore™ Sustainable Floor</a></li>
+                        <li><a href="#">Airflow Management</a></li>
+                        <li><a href="#">All Products</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Technical Library</a></li>
+                        <li><a href="#">Case Studies</a></li>
+                        <li><a href="#">Installation Guides</a></li>
+                        <li><a href="#">Sustainability Reports</a></li>
+                        <li><a href="#">Product Specifications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Our History</a></li>
+                        <li><a href="#">Sustainability Commitment</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tate Global. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Cookie Policy</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Chatbot Icon -->
+    <div class="chat-icon" id="chat-toggle">
+        <i class="fas fa-comments"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Navigation Toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-menu').classList.toggle('active');
+        });
+
+        // Cookie Banner
+        document.getElementById('cookie-accept').addEventListener('click', function() {
+            document.getElementById('cookie-banner').style.display = 'none';
+            // Here you would set a cookie to remember the user's choice
+        });
+
+        // Form Submission
+        document.getElementById('lead-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your submission! A member of our team will contact you shortly.');
+            this.reset();
+        });
+
+        // Chat Icon
+        document.getElementById('chat-toggle').addEventListener('click', function() {
+            alert('Live chat support is available Monday to Friday, 9am to 5pm. A support representative will respond shortly.');
+        });
+    </script>
